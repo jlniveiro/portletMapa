@@ -1,0 +1,241 @@
+Creación de themes en liferay con generador yeoman 1
+
+- Necesario instalar node.js de manera global (revisar versión dependiendo de la versión de liferay)
+	url:https://nodejs.org/es/
+	recomendado tener instalado git bash : https://git-scm.com/
+
+- Instalar de manera global la dependencia js de Yeoman
+	comando: npm install -g yo
+
+- Instalar el generador de themes de liferay de manera global
+	comando: npm install -g generator-liferay-theme
+	ojo: dependiendo de la versión de liferay hay que cambiar el comando
+	url: version 6.2 npm install -g generator-liferay-theme@^7.x.x
+	     version 7.0 igual que arriba y abajo
+ 	     versión 7.1 npm install -g generator-liferay-theme@8.x.x
+ 	     versión 7.2 npm install -g generator-liferay-theme@9.x.x
+
+si necesitamos instalar una versión anterior de generador de temas ejecutar de manera global uno de los anteriores comandos
+
+/*************************************************************************/
+
+Configuración del entorno de desarollo eclipse
+
+- Descargar la ultima versión de eclipse IDE Java EE y seleccionar un workspace
+	url: https://www.eclipse.org/downloads/packages/release/kepler/sr2/eclipse-ide-java-ee-developers
+
+- Descargar de sourceforge la ultima versión del tomcat de liferay:
+	url: https://sourceforge.net/projects/lportal/files/Liferay%20Portal/
+	ojo: tener actualizado para cada versión de liferay la versión de java
+
+- Agregar en el eclipse el IDE de liferay arrastrandolo o descargando el zip de la siguiente url
+	url: https://liferay.dev/project/-/asset_publisher/TyF2HQPLV1b5/content/ide-installation-instructions
+	ojo: revisar ultimas versiones
+
+- Una vez instalado seleccionamos desde el menu de eclipse - liferay - New liferay workspace project
+  se generara en el workspace una estructura de carpetas para los proyectos de liferay
+
+- Dentro de themes generamos el tema (mirar el punto Creación de themes en liferay con generador yeoman 2)
+
+- Para que reconozca el theme pulsamos con el segundo boton del raton y seleccionamos gradle\gradle-> refresh gradle project
+
+- Para instalar el tomcat seleccionamos dentro de Gradle Tasks -> bundle -> init bundle (modificar la ruta del tomcat liferay.workspace.bundle.url)
+	url: https://releases-cdn.liferay.com/portal
+	revisar desde esta url la versión a coger
+
+- Desde la opción de servers añadimos el tomcat descargado de sourceforge
+	ojo: revisar java puede que de error (A full JDK (not just JRE) is required)
+
+- Una vez añadido accedemos a sus propiedades y le modificamos la memoria dedicada -Xmx2048m
+
+/***********************************************************************/
+
+Creación de themes en liferay con generador yeoman 2
+
+- Nos dirijimos la workspace project liferay
+	ruta ejemplo: C:\Users\raul.rodriguez\workspace L7\ica-liferay-7.2\themes
+
+- Dentro abriremos terminal y ejecutamos el siguiente comando para crear el theme
+	comando: yo liferay-theme
+	ojo: dentro de la versión del generador puede variar las opciones
+
+	daremos nombre de theme, id, versión de theme , posibilidad de instalar fontawesome y configuración de servidor
+
+- Una vez creado accedemos a la carpeta del theme creado y atraves de gulp generamos un build
+	comando: gulp build
+	observamos que genera una estructura de carpetas nueva
+	build: estructura que se ejecuta en el tomcat
+	dist: war del theme
+
+- Nos llevamos la estructura del build a la carpeta src donde el desarollador trabaja
+	carpetas: font,images,js,templates (limpiamos los archivos que no usemos en projecto)
+
+- Dentro de src realizaremos los cambios para el tema
+
+- Si queremos que el war se ejecute directamente en el tomcat si tener que llevar el archivo fisico a la ruta de despliegue ejecutar el siguient comando:
+	comando: gulp deploy
+	esto hara que el war se despligue automaticamente
+
+- Una vez que tenemos el workapce
+
+- Si queremos hacer build o deploy desde eclipse una vez refrescado las tareas del workspace en la pestaña de "gradle tasks" seleccionamos el theme->build->build o deploy
+
+- Accedemos a la pagina y desde configuracion a la opcion de cambiar tema y seleccionamos el tema desplegado para ver los cambios
+
+- para configurar la comprobación de recarga de recursos debemos acceder en la administración del portal a panel de control->Configuración->Configuración del sistema->Motores de plantillas
+	cambiamos el valor del campo: Comprobación de modificación de recursos a 0
+
+- Para levantar el servidor y ver los cambios del tema levantar el servidor de tomcat desde eclipse
+
+- Modificar el portal-ext.properties y añadirle javascript.fast.load=false y theme.css.fast.load=false
+
+
+/***********************************************************************/
+
+Pasar el entorno de desarrollo
+
+- Se pasa todo el workspace sin la carpeta bundle y se inicia la tarea de crear las tareas gradle y ejecutar el init bundle para empezar a trabajar
+
+/**********************************************************************/
+
+Instalar theme desde el administrador del liferay
+
+- Se accede desde el panel de control->Aplicaciones->Gestor de aplicaciones | desde aqui se pulsa en opciones en la parte superior derecha y cargar y se selecciona el theme
+
+/*********************************************************************/
+
+Modificar el logo del portal
+
+- Para Modificar el logo de la pagina se realiza desde la configuración de las paginas en la opción logo
+
+/*********************************************************************/
+
+Cambiar el tiempo de sesión expirada
+
+- Desde el portal-ext.properties se añade la siguiente propiedad "session.timeout=240"
+	esto modificara el tiempo de 30 minutos a 4 horas
+
+/********************************************************************/
+
+Quitar desde administración de motores de plantilla la restrinción de acceso
+	- ir a Panel de control -> Configuracion -> Configuración del sistema -> motores de plantilla
+	- quitar las restriciones a serviceLocator y utilLocator
+
+/*******************************************************************/
+
+Configurar el modo developer desde el theme
+
+dentro de la carpeta WEB-INF añadimos el siguiente comando dentro del archivo liferay-plugin-package.properties
+
+	resources-importer-developer-mode-enabled=true
+
+/******************************************************************/
+para configurar el modo sin minificar del js y css acceder al portal-ext.properties y modificar los siguientes prametros con el siguiente valor
+
+theme.css.fast.load=true
+javascript.fast.load=true
+
+/******************************************************************/
+
+Corregir el bug para mostrar/ocultar el botón de editar tanto en escritorio como movil (revisar versiones posteriores por si esta corregido)
+
+Se debe de añadir el siguiente codigo SCSS
+
+// Modificaciones Control Menu
+
+/* editar controles siempre visible */
+
+#ControlMenu {
+    .visible-xs {
+        display: block !important;
+    }
+}
+
+.controls-hidden {
+    .portlet-boundary {
+        &.portlet-barebone {
+            .portlet {
+                >.portlet-topper {
+                    display: none;
+                }
+                .portlet-content.portlet-content-editable {
+                    &:hover {
+                        border-color: transparent;
+                    }
+                }
+            }
+            &:hover {
+                .portlet {
+                    .portlet-header {
+                        display: none;
+                    }
+                }
+            }
+        }
+        &.portlet-decorate,
+        &.portlet-borderless {
+            .portlet {
+                >.portlet-topper {
+                    display: none;
+                }
+
+                .portlet-content.portlet-content-editable {
+                    &:hover {
+                        border-color: transparent;
+                    }
+                }
+            }
+            &:hover {
+                .portlet {
+                    .portlet-header {
+                        .visible-interaction {
+                            display: none;
+                            z-index: 1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*****************************************************************/
+
+Para configurar desde la administración a traves de checkbox utilizadades de la pagina se realizan a traves del liferay-look-and-feel.xml
+	revisar los ejemplos para configurarlo
+	ejemplo 1
+
+	liferay-look-and-feel.xml
+
+		<settings>
+			<setting configurable="true" key="show-footer" type="checkbox" value="true" />
+			<setting configurable="true" key="show-header" type="checkbox" value="true" />
+			<setting configurable="true" key="show-main-navigation-in-full-screen" type="checkbox" value="false" />
+			<setting configurable="false" key="show-site-name-default" value="true" />
+			<setting configurable="false" key="show-site-name-supported" value="true" />
+			<setting configurable="true" key="use-a-retina-logo" type="checkbox" value="true" />
+			<!-- Insert snippet 02-theme-settings here -->
+		</settings>
+
+	portal_normal.ftl
+
+	ejemplo para mostrar la cabecera show-header
+
+	<#if show_header>
+		<header id="banner" role="banner">
+			<div class="container-fluid container-fluid-max-xl">
+				<nav class="navbar ${nav_collapse}">
+				...
+
+/*****************************************************************/
+
+
+
+
+
+
+
+
+
+
+	
