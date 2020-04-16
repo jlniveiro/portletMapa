@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.grupoica.actuaciones.model.Actuacion">
+		<field name="uuid" type="String" />
+		<field name="actuacionId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+		<field name="codTecnico" type="long" />
+		<field name="nombre" type="String" />
+		<field name="objetivo" type="String" />
+		<field name="descripcion" type="String" />
+		<field name="zona" type="String" />
+		<field name="comunidadAutonoma" type="String" />
+		<field name="provincia" type="String" />
+		<field name="superficie" type="BigDecimal" />
+		<field name="costeEjecucion" type="BigDecimal" />
+		<field name="regantes" type="long" />
+		<field name="cultivos" type="String" />
+		<field name="situacion" type="String" />
+		<field name="longitud" type="BigDecimal" />
+		<field name="latitud" type="BigDecimal" />
+		<field name="status" type="int" />
+		<field name="statusByUserId" type="long" />
+		<field name="statusByUserName" type="String" />
+		<field name="statusDate" type="Date" />
+	</model>
+</model-hints>

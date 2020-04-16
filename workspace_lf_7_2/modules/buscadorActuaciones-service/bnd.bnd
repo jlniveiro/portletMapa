@@ -1,0 +1,4 @@
+Bundle-Name: buscadorActuaciones-service
+Bundle-SymbolicName: es.grupoica.seiasaweb.buscador
+Bundle-Version: 1.0.0
+Liferay-Configuration-Path: /configuration
