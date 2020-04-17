@@ -17,9 +17,9 @@
 <div id="filtro">
     <div>
 	    <label for="nombre">Nombre:</label><input type="text" id="nombre"> &nbsp;
-		<label for="comunidades">Comunidades:</label><select id="comunidades"></select> &nbsp;
-		<label for="provincias">Provincias:</label><select id="provincias"></select> &nbsp;
-		<label for="situaciones">Situaci&oacute;n:</label><select id="situaciones"></select>
+		<label for="comunidad">Comunidades:</label><select id="comunidad"></select> &nbsp;
+		<label for="provincia">Provincias:</label><select id="provincia"></select> &nbsp;
+		<label for="situacion">Situaci&oacute;n:</label><select id="situacion"></select>
 	</div>
 	<div id="busqueda">
 		<input type="button" id="buscar" value="Buscar"></input>
