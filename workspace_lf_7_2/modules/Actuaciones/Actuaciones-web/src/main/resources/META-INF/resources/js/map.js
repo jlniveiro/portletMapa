@@ -27,17 +27,72 @@ $( document ).ready(function() {
 	//añadimos las capas de tiles al mapa para poder seleccionarlas
 	L.control.layers(baseMaps).addTo(map);
 	
+	//ICONOS
 	
-	
-	var townIcon = L.icon({
-	    //iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_verde24.png',
-	    //iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_verde24.png', 
-		iconUrl: '/documents/20124/0/icono_verde24.png/572aa805-c05e-c8e9-b235-d355c47bf8e6?version=1.0&t=1586862128062&imageThumbnail=1',
-		iconRetinaUrl: '/documents/20124/0/icono_verde24.png/572aa805-c05e-c8e9-b235-d355c47bf8e6?version=1.0&t=1586862128062&imageThumbnail=1',
-	    iconSize: [24,24],
+	//#FFFF00
+	var iconffff00 = L.icon({
+	    iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_FFFF00_24.png',
+	    iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_FFFF00_24.png', 
+		iconSize: [24,24],
 	    iconAnchor: [12,24],
 	    popupAnchor: [0, -24]
-	  });
+	});
+	
+	//#000080
+	var icon000080 = L.icon({
+	    iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_000080_24.png',
+	    iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_000080_24.png', 
+		iconSize: [24,24],
+	    iconAnchor: [12,24],
+	    popupAnchor: [0, -24]
+	});
+	
+	//#0000FF
+	var icon0000ff = L.icon({
+	    iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_0000FF_24.png',
+	    iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_0000FF_24.png', 
+		iconSize: [24,24],
+	    iconAnchor: [12,24],
+	    popupAnchor: [0, -24]
+	});
+	
+	//#00FFFF
+	var icon00ffff = L.icon({
+	    iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_00FFFF_24.png',
+	    iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_00FFFF_24.png', 
+		iconSize: [24,24],
+	    iconAnchor: [12,24],
+	    popupAnchor: [0, -24]
+	});
+	
+	//#00FF00
+	var icon00ff00 = L.icon({
+	    iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_00FF00_24.png',
+	    iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_00FF00_24.png', 
+		iconSize: [24,24],
+	    iconAnchor: [12,24],
+	    popupAnchor: [0, -24]
+	});
+	
+	//#008000
+	var icon008000 = L.icon({
+	    iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_008000_24.png',
+	    iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_008000_24.png', 
+		iconSize: [24,24],
+	    iconAnchor: [12,24],
+	    popupAnchor: [0, -24]
+	});
+	
+	var defaultIcon = L.icon({
+	      iconUrl: 'imagenes/icono_verde24.png',
+	      iconRetinaUrl: 'imagenes/icono_verde24.png',
+	      iconSize: [15,15],
+	      iconAnchor: [9,18],
+	      popupAnchor: [0, -15]
+	});
+	
+	
+	
 	
 	var arrayPuntos = [];
 	var arrayCirculos = [];
@@ -221,25 +276,50 @@ $( document ).ready(function() {
 				  }
 			}
 			
-			
+						
 			//CARGAMOS LOS PUNTOS EN EL MAPA
 			var puntos = [];
+			var situaciones = [];
 			var contentData = [];
 			
 			$.each(data, function(i,item){
 				puntos[i]=[data[i].latitud, data[i].longitud];
 				console.log(i + " - LAT: " + data[i].latitud + " , LONG: " + data[i].longitud);
+				situaciones[i] = [data[i].colorSituacion];
 				contentData[i] = generateData(data[i].nombre, data[i].comunidadAutonoma, data[i].provincia, data[i].situacion);
-			})
+			});
 			
 			console.log("PUNTOS: " + puntos.length);
 			console.log("CONTENT DATA: " + contentData.length);
 			console.log("ARRAY de PUNTOS: " + arrayPuntos.length);
+			console.log("ARRAY de SITUACIONES: " + situaciones.length);
 			
 			
 			//AÑADIMOS LOS PUNTOS AL MAPA
 			for (var p = 0; p < puntos.length; p++) {
-			    arrayPuntos[p] = L.marker(puntos[p], { icon: townIcon });
+				var icono = situaciones[p];
+				if (icono == '#FFFF00'){
+					arrayPuntos[p] = L.marker(puntos[p], { icon: iconffff00 });
+				}
+				else if (icono == '#000080'){
+					arrayPuntos[p] = L.marker(puntos[p], { icon: icon000080 });
+				}
+				else if (icono == '#0000FF'){
+					arrayPuntos[p] = L.marker(puntos[p], { icon: icon0000ff });
+				}
+				else if (icono == '#00FFFF'){
+					arrayPuntos[p] = L.marker(puntos[p], { icon: icon00ffff });
+				}
+				else if (icono == '#00FF00'){
+					arrayPuntos[p] = L.marker(puntos[p], { icon: icon00ff00 });
+				}
+				else if (icono == '#008000'){
+					arrayPuntos[p] = L.marker(puntos[p], { icon: icon008000 });
+				}
+				else{
+					arrayPuntos[p] = L.marker(puntos[p], { icon: defaultIcon });
+				}
+					    
 			    //Creamos un popup para el punto.
 			    var popup = L.popup({
 			        minWidth: 100,
