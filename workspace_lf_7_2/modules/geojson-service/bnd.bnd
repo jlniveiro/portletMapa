@@ -1,0 +1,4 @@
+Bundle-Name: geojson-service
+Bundle-SymbolicName: es.grupoica.seiasaweb.rest
+Bundle-Version: 1.0.0
+Liferay-Configuration-Path: /configuration

@@ -1,0 +1,61 @@
+#map {
+  height:400px;
+  //width: 90%;
+  //position:absolute;
+  //top: 20%;
+  //bottom: 20%;
+  margin:12px 0 12px 0;
+} 
+
+#info{
+  position:absolute;
+  top: 0;
+  width: 100%
+  height: 200px;
+}
+
+.contenido {
+  font-family: Open Sans;
+  font-size: 9pt;
+  color: #707070;
+  line-height:1px;
+}
+
+.titulo{
+  font-family: Open Sans;
+  font-size: 9pt;
+  padding: 2px;
+  line-height:2px;
+  //background: #4C7D2B;
+}
+
+
+.titulo a{
+  color: #FFFFFF;
+}
+
+#filtro {
+		padding: 5px;
+		width: 100%;
+}
+
+#filtro input{
+		width: 18%;
+}
+
+#filtro select{
+	width: 15%;
+}
+
+#busqueda {
+		padding: 5px;
+		width: 100%;
+}
+
+#buscar {
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+

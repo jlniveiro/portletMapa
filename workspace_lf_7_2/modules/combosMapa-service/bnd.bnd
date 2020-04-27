@@ -1,0 +1,4 @@
+Bundle-Name: combosMapa-service
+Bundle-SymbolicName: es.grupoica.seiasaweb.combos
+Bundle-Version: 1.0.0
+Liferay-Configuration-Path: /configuration

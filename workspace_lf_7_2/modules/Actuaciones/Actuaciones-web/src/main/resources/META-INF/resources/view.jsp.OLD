@@ -1,0 +1,89 @@
+<%@page import="com.grupoica.actuaciones.service.persistence.ActuacionUtil"%>
+<%@page import="com.grupoica.actuaciones.service.ActuacionLocalServiceUtil"%>
+<%@ include file="/init.jsp" %>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>	  
+
+<h1><liferay-ui:message key="actuaciones.caption"/></h1>  
+
+<div id="map" class="map map-home" style="margin:12px 0 12px 0;height:400px;"></div>
+
+<div id="buscador_actuaciones">
+
+</div>
+<h1><liferay-ui:message key="buscador_actuaciones.caption"/></h1>
+
+<!-- BUSCADOR DE OBRAS -->
+
+
+<aui:form id="buscadorActuaciones" action="/">
+    <aui:row>
+    	<aui:col width="30">
+	    	<aui:input name="nombreActuacion" value="" id="nombreActuacion" label="T�tulo" 
+	    required="false" />
+	    </aui:col>
+	    <aui:col width="20">
+		    <aui:select name="comAutActuacion" id="comAutActuacion" label ="Comunidad Aut�noma">
+		    	<aui:option selected="true" value="0">-Cualquiera-</aui:option>
+			</aui:select> 
+		</aui:col>
+		<aui:col width="15">
+			<aui:select name="provinciaActuacion" id="provinciaActuacion" label ="Provincia">
+				<aui:option selected="true" value="0">-Cualquiera-</aui:option>
+			</aui:select>
+		</aui:col> 
+		<aui:col width="15">
+			<aui:select name="situacionActuacion" id="situacionActuacion" label ="Situaci�n">
+				<aui:option selected="true" value="0">-Cualquiera-</aui:option>
+			</aui:select>
+		</aui:col>  
+		<aui:col width="15">
+		    <aui:button-row>
+				<aui:button name="searchForm" id="searchForm" type="submit" value="Aplicar" />
+			</aui:button-row>
+		</aui:col> 
+	</aui:row>
+</aui:form>
+
+<%
+	//System.out.println(request.getParameter("nombreActuacion"));
+	if(request.getParameter("nombreActuacion")!=null || request.getParameter("comAutActuacion")!=null || request.getParameter("comAutActuacion")!=null || request.getParameter("comAutActuacion")!=null){
+		//System.out.println("ALGUN CAMPO EST� RELLENO");
+	}
+	
+%>
+
+
+<liferay-ui:search-container delta="2" emptyResultsMessage="no-actuaciones-encontradas">
+	<liferay-ui:search-container-results results="<%=ActuacionLocalServiceUtil.findAll() %>"/>
+	<liferay-ui:search-container-row className="com.grupoica.actuaciones.model.Actuacion" keyProperty="actuacionId" modelVar="actuacion">
+		<liferay-ui:search-container-column-text name="Nombre" property="nombre"/>
+		<liferay-ui:search-container-column-text name="Superficie" property="superficie"/>
+		<liferay-ui:search-container-column-text name="Coste ejecuci�n" property="costeEjecucion"/>
+	</liferay-ui:search-container-row>
+	<liferay-ui:search-iterator />
+</liferay-ui:search-container>
+
+
+<script>
+	var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+		osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+		osm = L.tileLayer(osmUrl, {maxZoom: 18, attribution: osmAttrib});
+	var map = L.map('map').setView([40.4167, -3.70325], 5).addLayer(osm);
+
+	//L.marker([23.141165, -82.351834])
+	//	.addTo(map)
+	//	.bindPopup('La Catedral de la Habana.')
+	//	.openPopup();
+	
+    // Attach a submit handler to the form
+    $( "#buscadorActuaciones" ).submit(function( event ) {
+
+        // Stop form from submitting normally
+        event.preventDefault();
+
+        console.log("Eeeee");
+        //$( "#result" ).empty().append( content );
+    });
+</script>
