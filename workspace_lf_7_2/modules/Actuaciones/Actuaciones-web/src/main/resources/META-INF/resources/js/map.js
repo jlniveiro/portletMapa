@@ -253,7 +253,7 @@ $( document ).ready(function() {
 						
 			//FUNCIÓN QUE GENERA EL POPUP DE UNA ACTUACIÓN
 			function generateData(nombre, comunidad, provincia, situacion, entryId){
-				  var content = "<p class='contenido'><strong><a class='titulo' href='/web/guest/detalle-actuacion/-/asset_publisher/r19Ajlbdn4Nm?assetEntry=" + entryId + "#'>" + nombre + "</a></strong></p>" +
+				  var content = "<p class='contenido'><strong><a class='titulo' href='/web/guest/detalle-actuacion/-/asset_publisher/r19Ajlbdn4Nm/" + entryId + "#'>" + nombre + "</a></strong></p>" +
 				                "<p class='contenido'><strong>C. Aut&oacute;noma:</strong>" + comunidad + "</p>" +
 				                "<p class='contenido'><strong>Provincia:</strong>" + provincia + "</p>" +
 				                "<p class='contenido'><strong>Estado:</strong>" + situacion + "</p>";

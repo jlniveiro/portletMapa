@@ -98,7 +98,8 @@ public class BuscadorActuacionesControllerApplication extends Application {
 					//String urlDetalle = "<a href='#' onclick='irADetalle(" + actua.getEntryId() + ");return false;'>Ver detalle</a>";
 					//String boton = "<button onclick=window.location.href='/web/guest/detalle-actuaci%C3%B3n/-/asset_publisher/zliXYsKhtQJm/content/id/34158?_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_zliXYsKhtQJm_redirect=http%3A%2F%2Flocalhost%3A8080%2Fweb%2Fguest%2Fdetalle-actuaci%25C3%25B3n%3Fp_p_id%3Dcom_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_zliXYsKhtQJm%26p_p_lifecycle%3D0%26p_p_state%3Dnormal%26p_p_mode%3Dview%26_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_zliXYsKhtQJm_cur%3D0%26p_r_p_resetCur%3Dfalse%26_com_liferay_asset_publisher_web_portlet_AssetPublisherPortlet_INSTANCE_zliXYsKhtQJm_assetEntryId%3D" + actua.getEntryId() + "'>Ver detalle</button>";
 					//String boton = "<button onclick=window.location.href='/web/guest/detalle-actuacion/-/asset_publisher/zliXYsKhtQJm/content/id/" + actua.getEntryId() + "#'>Ver detalle</button>";
-					String boton = "<button onclick=window.location.href='/web/guest/detalle-actuacion/-/asset_publisher/r19Ajlbdn4Nm?assetEntry=" + actua.getEntryId() + "#'>Ver detalle</button>";
+					//String boton = "<button onclick=window.location.href='/web/guest/detalle-actuacion/-/asset_publisher/r19Ajlbdn4Nm?assetEntry=" + actua.getEntryId() + "#'>Ver detalle</button>";
+					String boton = "<button onclick=window.location.href='/web/guest/detalle-actuacion/-/asset_publisher/r19Ajlbdn4Nm/" + actua.getEntryId() + "#'>Ver detalle</button>";
 					
 					//String boton = "<button onclick=window.location.href='/web/guest/-/" + actua.getUrlTitle() + "'>Ver detalle</button>";
 					//System.out.println("DETALLE:" + urlDetalle);
