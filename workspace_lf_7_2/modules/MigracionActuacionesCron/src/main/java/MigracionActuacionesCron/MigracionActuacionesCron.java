@@ -60,7 +60,7 @@ import com.liferay.journal.service.JournalArticleLocalServiceUtil;
 @Component(
 	    immediate = true,
 	    property = {
-	        "cron.expression= 0 0/20 0/8 1/1 * ?"   // scheduler runs every 12 hours starting at 00. -> 0 0 0/12 ? * *
+	        "cron.expression= 0 0 0/1 1/1 * ?"   // scheduler runs every 12 hours starting at 00. -> 0 0 0/12 ? * *
 	    },
 	    service = MigracionActuacionesCron.class
 	)
@@ -340,6 +340,7 @@ public class MigracionActuacionesCron extends BaseMessageListener {
 			
 			
 			//Procesamos el OBJETIVO
+			/*
 			Node nodeObjetivo = document.selectSingleNode("/root/dynamic-element[@name='objetivo']/dynamic-content");
 			if (nodeObjetivo != null)
 			{
@@ -352,7 +353,7 @@ public class MigracionActuacionesCron extends BaseMessageListener {
 	    			nodeObjetivo.setText(objetivo);
 	    		}
 			}
-			
+			*/
 			
 			//UBICACION
 			Node nodeUbicacion = document.selectSingleNode("/root/dynamic-element[@name='ubicacion']/dynamic-content");

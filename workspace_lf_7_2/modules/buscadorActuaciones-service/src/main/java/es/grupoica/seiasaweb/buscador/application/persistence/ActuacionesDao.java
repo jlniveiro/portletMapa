@@ -43,7 +43,7 @@ public class ActuacionesDao {
 	    }
 	    
 	    sqlActuaciones.append(" AND codTecnico != '' ");
-	    System.out.println("Consulta a realizar: " + sqlActuaciones.toString());
+	    //System.out.println("Consulta a realizar: " + sqlActuaciones.toString());
 	    
 	    return sqlActuaciones.toString();
 	}

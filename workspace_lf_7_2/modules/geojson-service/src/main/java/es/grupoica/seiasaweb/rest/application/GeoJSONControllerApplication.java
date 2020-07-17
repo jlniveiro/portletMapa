@@ -68,7 +68,7 @@ public class GeoJSONControllerApplication extends Application {
             isReader.read(charArray);
             //Converting character array to a String
             jsonString  = new String(charArray);
-            System.out.println("Tamaño fichero: " + jsonString.length());
+            //System.out.println("Tamaño fichero: " + jsonString.length());
             
         }catch (IOException exc){
             System.out.println("Error al leer el archivo");

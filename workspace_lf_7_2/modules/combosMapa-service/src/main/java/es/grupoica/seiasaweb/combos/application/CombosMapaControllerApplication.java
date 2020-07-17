@@ -67,7 +67,7 @@ public class CombosMapaControllerApplication extends Application {
 		try {
 			//Obtenemos las comunidades
 			ArrayList<ComunidadAutonoma> comunidades = dao.getComunidades();
-			System.out.println("Procesamos : " + comunidades.size() + " comunidades");
+			//System.out.println("Procesamos : " + comunidades.size() + " comunidades");
 			if (comunidades != null && !comunidades.isEmpty()) {
 				for (ComunidadAutonoma comunidad : comunidades) {
 					//Construimos el JSON a enviar al cliente.
@@ -101,7 +101,7 @@ public class CombosMapaControllerApplication extends Application {
 		try {
 			//Obtenemos las provincias
 			ArrayList<Provincia> provincias = dao.getProvincias();
-			System.out.println("Procesamos : " + provincias.size() + " provincias");
+			//System.out.println("Procesamos : " + provincias.size() + " provincias");
 			if (provincias != null && !provincias.isEmpty()) {
 				for (Provincia provincia : provincias) {
 					//Construimos el JSON a enviar al cliente.
@@ -135,7 +135,7 @@ public class CombosMapaControllerApplication extends Application {
 		try {
 			//Obtenemos las situaciones
 			ArrayList<Situacion> situaciones = dao.getSituaciones();
-			System.out.println("Procesamos : " + situaciones.size() + " situaciones");
+			//System.out.println("Procesamos : " + situaciones.size() + " situaciones");
 			if (situaciones != null && !situaciones.isEmpty()) {
 				for (Situacion situacion : situaciones) {
 					//Construimos el JSON a enviar al cliente.

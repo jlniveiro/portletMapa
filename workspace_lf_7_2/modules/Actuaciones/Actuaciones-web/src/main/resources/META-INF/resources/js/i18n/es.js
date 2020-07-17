@@ -2,7 +2,7 @@
 
     jsGrid.locales.es = {
         grid: {
-            noDataContent: "No encontrado",
+            noDataContent: "No se han encontrado datos para la búsqueda solicitada",
             deleteConfirm: "¿Está seguro?",
             pagerFormat: "Paginas: {first} {prev} {pages} {next} {last} &nbsp;&nbsp; {pageIndex} de {pageCount}",
             pagePrevText: "Anterior",

@@ -83,12 +83,22 @@ $( document ).ready(function() {
 	    popupAnchor: [0, -24]
 	});
 	
+	//#icono_00FA9A_24.png
+	var icon00FA9A = L.icon({
+	    iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_00FA9A_24.png',
+	    iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_00FA9A_24.png', 
+		iconSize: [24,24],
+	    iconAnchor: [12,24],
+	    popupAnchor: [0, -24]
+	});
+	
+	
 	var defaultIcon = L.icon({
-	      iconUrl: 'imagenes/icono_verde24.png',
-	      iconRetinaUrl: 'imagenes/icono_verde24.png',
-	      iconSize: [15,15],
-	      iconAnchor: [9,18],
-	      popupAnchor: [0, -15]
+	      iconUrl: '/o/com.grupoica.actuaciones.web/images/icono_verde24.png',
+	      iconRetinaUrl: '/o/com.grupoica.actuaciones.web/images/icono_verde24.png',
+	      iconSize: [24,24],
+	      iconAnchor: [12,24],
+	      popupAnchor: [0, -24]
 	});
 	
 	
@@ -180,7 +190,8 @@ $( document ).ready(function() {
 			let geoActuaciones = L.geoJson(null, {});
 		    geoActuaciones.addData(data);
 		    geoActuaciones.eachLayer(function(layer) {
-		        layer.bindPopup("<p class='contenido'><strong>Nombre:</strong> " + layer.feature.properties.NOMBRE + "<p>" +
+		        //layer.bindPopup("<p class='titulo'><strong>Nombre:</strong> " + layer.feature.properties.NOMBRE + "<p>" +
+		    	layer.bindPopup("<p class='titulo'>" + layer.feature.properties.NOMBRE + "<p>" +
 		            "<p class='contenido'><strong>Autonom&iacute;a:</strong> " + layer.feature.properties.AUTONOMIA + "<p>" +
 		            "<p class='contenido'><strong>Provincia:</strong> " + layer.feature.properties.PROVINCIA + "<p>" +
 		            "<p class='contenido'><strong>Regantes:</strong> " + layer.feature.properties.REGANTES + "<p>");
@@ -222,7 +233,7 @@ $( document ).ready(function() {
 						
 			$("#buscador_actuaciones").jsGrid({
 			    width: "100%",
-			    height: "500px",
+			    height: "auto",
 			
 			    sorting: true,
 			    paging: true,
@@ -252,11 +263,13 @@ $( document ).ready(function() {
 			
 						
 			//FUNCIÓN QUE GENERA EL POPUP DE UNA ACTUACIÓN
-			function generateData(nombre, comunidad, provincia, situacion, entryId){
+			function generateData(nombre, comunidad, provincia, situacion, regantes, superficie, entryId){
 				  var content = "<p class='contenido'><strong><a class='titulo' href='/web/guest/detalle-actuacion/-/asset_publisher/r19Ajlbdn4Nm/" + entryId + "#'>" + nombre + "</a></strong></p>" +
 				                "<p class='contenido'><strong>C. Aut&oacute;noma:</strong>" + comunidad + "</p>" +
 				                "<p class='contenido'><strong>Provincia:</strong>" + provincia + "</p>" +
-				                "<p class='contenido'><strong>Estado:</strong>" + situacion + "</p>";
+				                "<p class='contenido'><strong>Estado:</strong>" + situacion + "</p>" + 
+				                "<p class='contenido'><strong>Regantes:</strong>" + regantes + "</p>" +
+				                "<p class='contenido'><strong>Superficie:</strong>" + superficie + "</p>";
 
 				  return content; 
 			}
@@ -303,15 +316,10 @@ $( document ).ready(function() {
 				puntos[i]=[data[i].latitud, data[i].longitud];
 				console.log(i + " - LAT: " + data[i].latitud + " , LONG: " + data[i].longitud);
 				situaciones[i] = [data[i].colorSituacion];
-				contentData[i] = generateData(data[i].nombre, data[i].comunidadAutonoma, data[i].provincia, data[i].situacion, data[i].entryId);
+				contentData[i] = generateData(data[i].nombre, data[i].comunidadAutonoma, data[i].provincia, data[i].situacion, data[i].regantes, data[i].superficie, data[i].entryId);
 			});
 			
-			console.log("PUNTOS: " + puntos.length);
-			console.log("CONTENT DATA: " + contentData.length);
-			console.log("ARRAY de PUNTOS: " + arrayPuntos.length);
-			console.log("ARRAY de SITUACIONES: " + situaciones.length);
-			
-			
+						
 			//AÑADIMOS LOS PUNTOS AL MAPA
 			for (var p = 0; p < puntos.length; p++) {
 				var icono = situaciones[p];
@@ -332,6 +340,9 @@ $( document ).ready(function() {
 				}
 				else if (icono == '#008000'){
 					arrayPuntos[p] = L.marker(puntos[p], { icon: icon008000 });
+				}
+				else if (icono == '#00FA9A'){
+					arrayPuntos[p] = L.marker(puntos[p], { icon: icon00FA9A });
 				}
 				else{
 					arrayPuntos[p] = L.marker(puntos[p], { icon: defaultIcon });

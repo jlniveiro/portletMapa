@@ -5,14 +5,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/leaflet-search.css" />
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/map.css"/>
 
 <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css">  -->
 <!-- <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>	 -->  
 
 <!--  <h1><liferay-ui:message key="actuaciones.caption"/></h1>  -->  
-<div id="map" style="margin:12px 0 12px 0;height:500px;"></div>
+<div id="map" style="margin:12px 0 12px 0;height:550px;"></div>
 
 <div id="filtro">
    <fieldset>
@@ -71,7 +70,6 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster-src.js"></script>
-<script src="<%=request.getContextPath()%>/js/leaflet-search.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.css" />
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid-theme.min.css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsgrid/1.5.3/jsgrid.min.js"></script>

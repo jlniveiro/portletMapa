@@ -69,7 +69,7 @@ public class BuscadorActuacionesControllerApplication extends Application {
 			if (situacion == null) situacion = "";
 			//Obtenemos las actuaciones
 			ArrayList<Actuacion> actuaciones = dao.getActuaciones(nombre, comunidad, provincia, situacion);
-			System.out.println("Procesamos : " + actuaciones.size() + " actuaciones");
+			//System.out.println("Procesamos : " + actuaciones.size() + " actuaciones");
 			if (actuaciones != null && !actuaciones.isEmpty()) {
 				for (Actuacion actua : actuaciones) {
 					//Construimos el JSON a enviar al cliente.
